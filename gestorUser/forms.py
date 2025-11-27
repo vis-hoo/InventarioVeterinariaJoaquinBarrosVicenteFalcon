@@ -44,3 +44,27 @@ class UsuarioRegistroForm(forms.ModelForm):
     email.label= "Email"
     password1.label= "Contraseña"
     password2.label= "Confirmar Contraseña"
+
+class UsuarioUsernameChangeForm(forms.Form):
+    username = forms.CharField(max_length=100, label="Nombre de usuario", required=True)
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña", required=True)
+
+    username.widget.attrs['class'] = 'form-control'
+    password.widget.attrs['class'] = 'form-control'
+
+    username.label= "Nombre de usuario"
+    password.label= "Contraseña"
+
+class UsuarioUsernameChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
+    username = forms.CharField(max_length=100, label="Nombre de usuario", required=True)
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña", required=True)
+    
+    username.widget.attrs['class'] = 'form-control'
+    password.widget.attrs['class'] = 'form-control'
+
+    username.label= "Nombre de usuario"
+    password.label= "Contraseña"

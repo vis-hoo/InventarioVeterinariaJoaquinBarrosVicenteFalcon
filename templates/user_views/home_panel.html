@@ -1,0 +1,32 @@
+{% extends "base_general.html" %}
+{% load static %}
+
+{% block title %}Panel de usuario{% endblock %}
+{% block sidebar %} {% include 'menu/base_sidebar.html' %} {% endblock %}
+{% block topbar %} {% include 'menu/topbar_logout.html' %} {% endblock %}
+{% block content %}
+
+<div class="container d-flex align-items-center flex-column py-5">
+    <!-- User avatar -->
+    <img class="img-profile rounded-circle mb-3" src="{% static 'img/undraw_profile.svg' %}" width="128px" />
+    <!-- User name -->
+    <h1 class="mb-3 font-weight-bold display-4">{{ user.first_name }} {{ user.last_name }}</h1>
+    <!-- User data -->
+    <p>Nombre de usuario: {{ user.username }}</p>
+    <p>Correo electrónico: {{ user.email }}</p>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+{% block footer %} {% include 'menu/footer.html' %} {% endblock %}
+{% block extras %} {% include 'menu/logout_dialog.html' %} {% endblock %}
