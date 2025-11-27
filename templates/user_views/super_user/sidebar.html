@@ -1,41 +1,41 @@
 {% extends 'menu/base_sidebar.html' %}
 
 {% block extra_content %}
+    
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
-    <!-- Admin products -->
+    <!-- Regular user products heading -->
+    <div class="sidebar-heading">Productos</div>
+
+    <!-- Products options -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-            aria-expanded="true" aria-controls="collapseThree">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Productos</span>
-        </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Opciones:</h6>
-                <a class="collapse-item" href="#">Listado de productos</a>
-                <a class="collapse-item" href="#">Agregar nuevo producto</a>
-            </div>
-        </div>
+        <a class="nav-link" href="{% url 'products_list' %}">
+            <i class="bi bi-cart-fill"></i>
+            <span>Lista de productos</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'products_create' %}">
+            <i class="bi bi-bag-plus-fill"></i>
+            <span>Agregar nuevo producto</span></a>
     </li>
 
+    
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
-    <!-- Admin categories -->
+    <!-- Regular user categories heading -->
+    <div class="sidebar-heading">Categorías</div>
+
+    <!-- Categories options -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-            aria-expanded="true" aria-controls="collapseFour">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Categorías</span>
-        </a>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Opciones:</h6>
-                <a class="collapse-item" href="{% url 'categories_list' %}">Listado de categorías</a>
-                <a class="collapse-item" href="{% url 'categories_create' %}">Agregar nueva categoría</a>
-            </div>
-        </div>
+        <a class="nav-link" href="{% url 'categories_list' %}">
+            <i class="bi bi-list"></i>
+            <span>Lista de categorías</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'categories_create' %}">
+            <i class="bi bi-plus-circle"></i>
+            <span>Agregar nueva categoría</span></a>
     </li>
 {% endblock %}

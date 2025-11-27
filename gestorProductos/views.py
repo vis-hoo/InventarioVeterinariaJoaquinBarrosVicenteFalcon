@@ -66,3 +66,65 @@ def categories_delete(request, id):
     Categoria.objects.get(id=id).delete()
     messages.success(request, "Categoría eliminada exitosamente")
     return HttpResponseRedirect(reverse('categories_list'))
+
+@login_required
+def products_list(request):
+    productos = Producto.objects.all()
+    data = {'productos': productos}
+    return render(request, 'user_views/products_control/products_list.html', data)
+
+@login_required
+def products_create(request):
+    form = ProductoRegistroForm()
+    
+    if request.method == 'POST':
+        form = ProductoRegistroForm(request.POST)
+        if form.is_valid():
+            try:
+                for producto in Producto.objects.all():
+                    if producto.nombre == form.cleaned_data['name']:
+                        messages.error(request, "Ya existe un producto con el mismo nombre.")
+                        return HttpResponseRedirect(reverse('products_create'))
+
+                producto = Producto.objects.create(
+                    nombre = form.cleaned_data['name'],
+                    descripcion = form.cleaned_data['description'],
+                    precio = form.cleaned_data['price'],
+                    categoria = form.cleaned_data['category'],
+                    creador = request.user
+                )
+                producto.save()
+                messages.success(request, "Producto creado exitosamente")
+                return HttpResponseRedirect(reverse('products_list'))
+
+            except IntegrityError:
+                messages.error(request, "Ya existe un producto con el mismo nombre.")
+                return HttpResponseRedirect(reverse('products_create'))
+    data = {'form': form}
+    return render(request, 'user_views/products_control/products_create.html', data)
+
+@login_required
+def products_edit(request, id):
+    producto = Producto.objects.get(id=id)
+    form = ProductoEditarForm(instance=producto)
+
+    if request.method == 'POST':
+        form = ProductoEditarForm(request.POST, instance=producto)
+        if form.is_valid():
+            producto.nombre = form.cleaned_data['name']
+            producto.descripcion = form.cleaned_data['description']
+            producto.precio = form.cleaned_data['price']
+            producto.categoria = form.cleaned_data['category']
+            producto.save()
+            messages.success(request, "Producto editado exitosamente")
+            return HttpResponseRedirect(reverse('products_list'))
+
+    data = {'form': form}
+    return render(request, 'user_views/products_control/products_edit.html', data)
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def products_delete(request, id): 
+    Producto.objects.get(id=id).delete()
+    messages.success(request, "Producto eliminado exitosamente")
+    return HttpResponseRedirect(reverse('products_list'))

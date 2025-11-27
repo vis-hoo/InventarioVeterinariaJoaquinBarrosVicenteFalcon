@@ -2,7 +2,15 @@
 {% load static %}
 
 {% block titulo %}Cambiar nombre de usuario{% endblock %}
-{% block sidebar %} {% include 'menu/base_sidebar.html' %} {% endblock %}
+{% block sidebar %}
+
+{% if user.is_superuser %}
+    {% include 'user_views/super_user/sidebar.html' %} 
+{% else %}
+    {% include 'user_views/regular_user/sidebar.html' %} 
+{% endif %}
+
+{% endblock %}
 {% block topbar %} {% include 'menu/topbar_user_name.html' %} {% endblock %}
 {% block content %}
     <!-- Form para añadir usuario-->

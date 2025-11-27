@@ -106,7 +106,7 @@
 <script src="https://cdn.datatables.net/buttons/3.2.5/js/buttons.colVis.min.js"></script>
 
 <script>
-    new DataTable("#productsTable", {
+    new DataTable("#categoriesTable", {
         layout: {
             topStart: {
                 buttons: ["excel", "pdf"],
@@ -125,3 +125,5 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
 {% endblock %}
+{% block footer %} {% include 'menu/footer.html' %} {% endblock %}
+{% block extras %} {% include 'menu/logout_dialog.html' %} {% endblock %}

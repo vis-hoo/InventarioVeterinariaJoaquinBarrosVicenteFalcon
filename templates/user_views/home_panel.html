@@ -15,10 +15,17 @@
 {% block content %}
 
 <div class="container d-flex align-items-center flex-column py-5">
+    {% if user.is_superuser %}
+    <!-- User avatar -->
+    <img class="img-profile rounded-circle mb-3" src="{% static 'img/undraw_profile_2.svg' %}" width="128px" />
+    <!-- User name -->
+        <h1 class="mb-3 font-weight-bold display-4">Administrador</h1>
+    {% else %}
     <!-- User avatar -->
     <img class="img-profile rounded-circle mb-3" src="{% static 'img/undraw_profile.svg' %}" width="128px" />
     <!-- User name -->
-    <h1 class="mb-3 font-weight-bold display-4">{{ user.first_name }} {{ user.last_name }}</h1>
+        <h1 class="mb-3 font-weight-bold display-4">{{ user.first_name }} {{ user.last_name }}</h1>
+    {% endif %}
     <!-- User data -->
     <p>Nombre de usuario: {{ user.username }}</p>
     <p>Correo electrónico: {{ user.email }}</p>

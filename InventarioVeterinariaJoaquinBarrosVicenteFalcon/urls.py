@@ -35,4 +35,9 @@ urlpatterns = [
     path('categories_create/', categories_create, name='categories_create'),
     path('categories_edit/<int:id>/', categories_edit, name='categories_edit'),
     path('categories_delete/<int:id>/', categories_delete, name='categories_delete'),
+    
+    path('products_list/', products_list, name='products_list'),
+    path('products_create/', products_create, name='products_create'),
+    path('products_edit/<int:id>/', products_edit, name='products_edit'),
+    path('products_delete/<int:id>/', products_delete, name='products_delete'),
 ]

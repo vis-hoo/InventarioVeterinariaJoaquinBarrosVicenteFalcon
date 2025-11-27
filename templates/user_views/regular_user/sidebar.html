@@ -10,19 +10,14 @@
 
     <!-- Products options -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="bi bi-people-fill"></i>
+        <a class="nav-link" href="{% url 'products_list' %}">
+            <i class="bi bi-cart-fill"></i>
             <span>Lista de productos</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="bi bi-person-plus-fill"></i>
+        <a class="nav-link" href="{% url 'products_create' %}">
+            <i class="bi bi-bag-plus-fill"></i>
             <span>Agregar nuevo producto</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="bi bi-clock-fill"></i>
-            <span>Modificar producto</span></a>
     </li>
 
 {% endblock %}
