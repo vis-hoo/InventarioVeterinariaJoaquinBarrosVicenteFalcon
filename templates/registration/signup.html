@@ -29,7 +29,7 @@
     </div>
     {% endif %}
     
-    <div class="row justify-content-center">
+    <div class="row justify-content-center my-5">
         <form method="post" class="user col-6 card p-4">
             {% csrf_token %}
             <div class="form-group row">
@@ -66,19 +66,6 @@
 
 
 <style>
-    .hover-lift {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .hover-lift:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    }
-
-    .text-primary {
-        color: var(--primary) !important;
-    }
-
     .btn-primary {
         background-color: var(--primary);
         color: white;

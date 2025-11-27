@@ -19,6 +19,11 @@ def signup(request):
         form = UsuarioRegistroForm(request.POST)
         if form.is_valid():
             try:
+                for user in User.objects.all():
+                    if user.first_name == form.cleaned_data['first_name'] and user.last_name == form.cleaned_data['last_name']:
+                        messages.error(request, "Ya existe un usuario con el mismo nombre y apellido.")
+                        return HttpResponseRedirect(reverse('signup'))
+
                 user = User.objects.create_user(
                     username=form.cleaned_data['first_name'] + form.cleaned_data['last_name'],
                     first_name=form.cleaned_data['first_name'],
