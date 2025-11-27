@@ -1,0 +1,28 @@
+{% extends 'menu/base_sidebar.html' %}
+
+{% block extra_content %}
+
+    <!-- Divider -->
+    <hr class="sidebar-divider" />
+
+    <!-- Regular user products heading -->
+    <div class="sidebar-heading">Productos</div>
+
+    <!-- Products options -->
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="bi bi-people-fill"></i>
+            <span>Lista de productos</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="bi bi-person-plus-fill"></i>
+            <span>Agregar nuevo producto</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="bi bi-clock-fill"></i>
+            <span>Modificar producto</span></a>
+    </li>
+
+{% endblock %}

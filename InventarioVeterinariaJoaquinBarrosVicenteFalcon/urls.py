@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from gestorUser.views import *
+from gestorProductos.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +26,10 @@ urlpatterns = [
     path('', home, name='home'),
     path('signup/', signup, name='signup'),
     path('home_panel/', home_panel, name='home_panel'),
+
     path('username_change/', username_change, name='username_change'),
     path('email_change/', email_change, name='email_change'),
     path('password_change/', password_change, name='password_change'),
+    
+    path('categories_create/', categories_create, name='categories_create'),
 ]

@@ -1,0 +1,45 @@
+{% extends 'menu/base_sidebar.html' %}
+
+{% block extra_content %}
+    <!-- Divider -->
+    <hr class="sidebar-divider" />
+
+    <!-- Admin products -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Productos</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Opciones:</h6>
+                <a class="collapse-item" href="#">Listado de productos</a>
+                <a class="collapse-item" href="#">Agregar nuevo producto</a>
+                <a class="collapse-item" href="#">Modificar producto</a>
+                <a class="collapse-item" href="#">Eliminar producto</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider" />
+
+    <!-- Admin categories -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+            aria-expanded="true" aria-controls="collapseFour">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Categorías</span>
+        </a>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Opciones:</h6>
+                <a class="collapse-item" href="#">Listado de categorías</a>
+                <a class="collapse-item" href="{% url 'categories_create' %}">Agregar nueva categoría</a>
+                <a class="collapse-item" href="#">Modificar categoría</a>
+                <a class="collapse-item" href="#">Eliminar categoría</a>
+            </div>
+        </div>
+    </li>
+{% endblock %}
