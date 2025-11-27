@@ -31,5 +31,7 @@ urlpatterns = [
     path('email_change/', email_change, name='email_change'),
     path('password_change/', password_change, name='password_change'),
     
+    path('categories_list/', categories_list, name='categories_list'),
     path('categories_create/', categories_create, name='categories_create'),
+    path('categories_edit/<int:id>/', categories_edit, name='categories_edit'),
 ]

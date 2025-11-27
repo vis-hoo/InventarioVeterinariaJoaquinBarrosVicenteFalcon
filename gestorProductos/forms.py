@@ -27,3 +27,27 @@ class CategoriaRegistroForm(forms.ModelForm):
 
     name.label= "Nombre"
     description.label= "Descripción"
+
+class CategoriaEditarForm(forms.Form):
+    name = forms.CharField(max_length=100, label="Nombre", required=True)
+    description = forms.CharField(max_length=100, label="Descripción", required=True)
+
+    name.widget.attrs['class'] = 'form-control'
+    description.widget.attrs['class'] = 'form-control'
+
+    name.label= "Nombre"
+    description.label= "Descripción"
+
+class CategoriaEditarForm(forms.ModelForm):
+    class Meta:
+        model = Categoria
+        fields = ['name', 'description']
+
+    name = forms.CharField(max_length=100, label="Nombre", required=True)
+    description = forms.CharField(max_length=100, label="Descripción", required=True)
+    
+    name.widget.attrs['class'] = 'form-control'
+    description.widget.attrs['class'] = 'form-control'
+
+    name.label= "Nombre"
+    description.label= "Descripción"

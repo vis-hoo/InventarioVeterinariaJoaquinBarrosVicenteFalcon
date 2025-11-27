@@ -9,6 +9,13 @@ from django.urls import reverse
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
+def categories_list(request):
+    categorias = Categoria.objects.all()
+    data = {'categorias': categorias}
+    return render(request, 'user_views/super_user/categories_control/categories_list.html', data)
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def categories_create(request):
     form = CategoriaRegistroForm()
     
@@ -34,4 +41,22 @@ def categories_create(request):
                 return HttpResponseRedirect(reverse('categories_create'))
     data = {'form': form}
     return render(request, 'user_views/super_user/categories_control/categories_create.html', data)
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def categories_edit(request, id):
+    categoria = Categoria.objects.get(id=id)
+    form = CategoriaEditarForm(instance=categoria)
+
+    if request.method == 'POST':
+        form = CategoriaEditarForm(request.POST, instance=categoria)
+        if form.is_valid():
+            categoria.nombre = form.cleaned_data['name']
+            categoria.descripcion = form.cleaned_data['description']
+            categoria.save()
+            messages.success(request, "Categoría editada exitosamente")
+            return HttpResponseRedirect(reverse('categories_list'))
+
+    data = {'form': form}
+    return render(request, 'user_views/super_user/categories_control/categories_edit.html', data)
 
