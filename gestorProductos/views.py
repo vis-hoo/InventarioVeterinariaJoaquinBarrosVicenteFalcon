@@ -60,3 +60,9 @@ def categories_edit(request, id):
     data = {'form': form}
     return render(request, 'user_views/super_user/categories_control/categories_edit.html', data)
 
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def categories_delete(request, id): 
+    Categoria.objects.get(id=id).delete()
+    messages.success(request, "Categoría eliminada exitosamente")
+    return HttpResponseRedirect(reverse('categories_list'))
