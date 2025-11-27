@@ -1,0 +1,66 @@
+{% extends "base_login.html" %}
+{% load static %}
+
+{% block titulo %}Registrar usuario{% endblock %}
+{% block content %}
+    <!-- Form para añadir usuario-->
+    <div class="alert alert-info display-3 text-center my-5"
+        style="background-color: #4e73df !important; color: white; border: none;">
+        Registrar usuario
+    </div>
+
+    {% if form.errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" <ul>
+        {% for field in form %}
+            {% for error in field.errors %}
+            <li><strong>{{field.label}}: </strong> {{error}} </li>
+            {% endfor %}
+        {% endfor %}
+        {% for error in field.no_field_errors %}
+            <li> {{error}} </li>
+        {% endfor %}
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    
+    <div class="row justify-content-center">
+        <form method="post" class="user col-6 card p-4">
+            {% csrf_token %}
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" name="first_name" id="id_first_name" autofocus
+                        required placeholder="Nombre">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" name="last_name" id="id_last_name" autofocus
+                        required placeholder="Apellido">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control form-control-user" name="email" id="id_email" autofocus
+                    required placeholder="Correo electrónico">
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user" id="id_password1" name="password1"
+                        required placeholder="Contraseña">
+                </div>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" id="id_password2" name="password2"
+                        required placeholder="Repetir contraseña">
+                </div>
+            </div>
+            <button class="btn btn-primary btn-user btn-block" type="submit">
+                Registrar cuenta
+            </button>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <a href="{% url 'home' %}" class="btn btn-primary btn-sm">Volver</a>
+                <input type="submit" class="btn btn-primary" value="Enviar">
+            </div>
+        </form>
+    </div>
+{% endblock %}

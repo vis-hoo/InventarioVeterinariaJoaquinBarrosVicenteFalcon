@@ -1,0 +1,111 @@
+{% extends 'base_general.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm static-top">
+    <a class="navbar-brand font-weight-bold text-primary" href="{% url 'home' %}">
+        <i class="fas fa-paw mr-2"></i>Chucky PB
+    </a>
+</nav>
+
+<!-- Heading Section -->
+<header class="masthead bg-primary text-white text-center py-5">
+    <div class="container d-flex align-items-center flex-column py-5">
+        <!-- Heading -->
+        <h1 class="masthead-heading mb-3 font-weight-bold display-4">Cuidado Experto para Mascotas</h1>
+        <!-- Divider -->
+        <div class="divider-custom divider-light my-4">
+            <div class="divider-custom-line bg-white"
+                style="height: 3px; width: 100px; display: inline-block; border-radius: 5px;"></div>
+            <div class="divider-custom-icon mx-3 d-inline-block"><i class="fas fa-heart fa-2x"></i></div>
+            <div class="divider-custom-line bg-white"
+                style="height: 3px; width: 100px; display: inline-block; border-radius: 5px;"></div>
+        </div>
+        <!-- Subheading -->
+        <a class="btn btn-light btn-lg rounded-pill px-5 py-3 font-weight-bold shadow" href="{% url 'login' %}">
+            Acceder al Sistema
+        </a>
+    </div>
+</header>
+
+<!-- Services Section -->
+<section class="features-icons bg-white text-center py-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3 p-4 rounded hover-lift">
+                    <div class="features-icons-icon d-flex justify-content-center mb-4">
+                        <i class="fas fa-stethoscope fa-4x text-primary"></i>
+                    </div>
+                    <h3 class="font-weight-bold mb-3">Insumos Médicos</h3>
+                    <p class="lead mb-0 text-muted">Control total sobre medicamentos, vacunas y equipamiento clínico.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3 p-4 rounded hover-lift">
+                    <div class="features-icons-icon d-flex justify-content-center mb-4">
+                        <i class="fas fa-bone fa-4x text-primary"></i>
+                    </div>
+                    <h3 class="font-weight-bold mb-3">Alimentos y Accesorios</h3>
+                    <p class="lead mb-0 text-muted">Catálogo actualizado de alimentos premium y accesorios para
+                        mascotas.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-0 mb-lg-3 p-4 rounded hover-lift">
+                    <div class="features-icons-icon d-flex justify-content-center mb-4">
+                        <i class="fas fa-chart-line fa-4x text-primary"></i>
+                    </div>
+                    <h3 class="font-weight-bold mb-3">Gestión Eficiente</h3>
+                    <p class="lead mb-0 text-muted">Reportes detallados y administración simplificada de tu negocio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .text-primary {
+        color: var(--primary) !important;
+    }
+
+    .bg-primary {
+        background-color: var(--primary) !important;
+    }
+
+    .btn-light {
+        background-color: var(--primary);
+        color: white;
+        border-color: white;
+    }
+
+    .btn-light:hover {
+        color: var(--primary);
+        background-color: white;
+        border-color: var(--primary);
+    }
+
+    .a {
+        color: var(--primary);
+    }
+
+    .a:hover {
+        color: var(--primary) !important;
+    }
+</style>
+
+{% include 'menu/footer.html' %}
+{% endblock %}
