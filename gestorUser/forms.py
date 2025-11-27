@@ -68,3 +68,57 @@ class UsuarioUsernameChangeForm(forms.ModelForm):
 
     username.label= "Nombre de usuario"
     password.label= "Contraseña"
+
+class UsuarioEmailChangeForm(forms.Form):
+    email = forms.EmailField(label="Correo electrónico", required=True)
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña", required=True)
+
+    email.widget.attrs['class'] = 'form-control'
+    password.widget.attrs['class'] = 'form-control'
+
+    email.label= "Correo electrónico"
+    password.label= "Contraseña"
+
+class UsuarioEmailChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email', 'password']
+
+    email = forms.EmailField(label="Correo electrónico", required=True)
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña", required=True)
+    
+    email.widget.attrs['class'] = 'form-control'
+    password.widget.attrs['class'] = 'form-control'
+
+    email.label= "Correo electrónico"
+    password.label= "Contraseña"
+
+class UsuarioPasswordChangeForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña", required=True)
+    new_password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña nueva", required=True)
+    new_password_confirmation = forms.CharField(widget=forms.PasswordInput(), label="Confirmar contraseña nueva", required=True)
+
+    password.widget.attrs['class'] = 'form-control'
+    new_password.widget.attrs['class'] = 'form-control'
+    new_password_confirmation.widget.attrs['class'] = 'form-control'
+
+    password.label= "Contraseña"
+    new_password.label= "Contraseña nueva"
+    new_password_confirmation.label= "Confirmar contraseña nueva"
+
+class UsuarioPasswordChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['password', 'new_password', 'new_password_confirmation']
+
+    password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña", required=True)
+    new_password = forms.CharField(widget=forms.PasswordInput(), label="Contraseña nueva", required=True)
+    new_password_confirmation = forms.CharField(widget=forms.PasswordInput(), label="Confirmar contraseña nueva", required=True)
+    
+    password.widget.attrs['class'] = 'form-control'
+    new_password.widget.attrs['class'] = 'form-control'
+    new_password_confirmation.widget.attrs['class'] = 'form-control'
+
+    password.label= "Contraseña"
+    new_password.label= "Contraseña nueva"
+    new_password_confirmation.label= "Confirmar contraseña nueva"

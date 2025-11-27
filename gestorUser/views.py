@@ -1,4 +1,4 @@
-from .forms import UsuarioRegistroForm, UsuarioUsernameChangeForm
+from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -70,3 +70,61 @@ def username_change(request):
                 return HttpResponseRedirect(reverse('username_change'))
     data = {'form': form}
     return render(request, 'user_views/user_settings/username_change.html')
+
+@login_required
+def email_change(request):
+    form = UsuarioEmailChangeForm()
+    
+    if request.method == 'POST':
+        form = UsuarioEmailChangeForm(request.POST)
+        if form.is_valid():
+            try:
+                for user in User.objects.all():
+                    if user.email == form.cleaned_data['email']:
+                        messages.error(request, "Ya existe un usuario con el mismo correo electrónico.")
+                        return HttpResponseRedirect(reverse('email_change'))
+
+                if not request.user.check_password(form.cleaned_data['password']):
+                    messages.error(request, "Contraseña incorrecta.")
+                    return HttpResponseRedirect(reverse('email_change'))
+
+                user = request.user
+                user.email = form.cleaned_data['email']
+                user.save()
+                messages.success(request, "Correo electrónico cambiado exitosamente")
+                return HttpResponseRedirect(reverse('home_panel'))
+
+            except IntegrityError:
+                messages.error(request, "Ya existe un usuario con el mismo correo electrónico.")
+                return HttpResponseRedirect(reverse('email_change'))
+    data = {'form': form}
+    return render(request, 'user_views/user_settings/email_change.html')
+
+
+@login_required
+def password_change(request):
+    form = UsuarioPasswordChangeForm()
+    
+    if request.method == 'POST':
+        form = UsuarioPasswordChangeForm(request.POST)
+        if form.is_valid():
+            try:
+                if not request.user.check_password(form.cleaned_data['password']):
+                    messages.error(request, "Contraseña incorrecta.")
+                    return HttpResponseRedirect(reverse('password_change'))
+
+                if form.cleaned_data['new_password'] != form.cleaned_data['new_password_confirmation']:
+                    messages.error(request, "Las contraseñas no coinciden.")
+                    return HttpResponseRedirect(reverse('password_change'))
+
+                user = request.user
+                user.set_password(form.cleaned_data['new_password'])
+                user.save()
+                messages.success(request, "Contraseña cambiada exitosamente")
+                return HttpResponseRedirect(reverse('home_panel'))
+
+            except IntegrityError:
+                messages.error(request, "Error al cambiar la contraseña.")
+                return HttpResponseRedirect(reverse('password_change'))
+    data = {'form': form}
+    return render(request, 'user_views/user_settings/password_change.html')

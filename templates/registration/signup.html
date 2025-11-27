@@ -4,9 +4,11 @@
 {% block titulo %}Registrar usuario{% endblock %}
 {% block content %}
     <!-- Form para añadir usuario-->
-    <div class="alert alert-info display-3 text-center my-5"
-        style="background-color: #4e73df !important; color: white; border: none;">
-        Registrar usuario
+    <div class="container">
+        <div class="alert alert-info display-3 text-center my-5"
+            style="background-color: var(--primary) !important; color: white; border: none;">
+            Registrar usuario
+        </div>
     </div>
 
     {% if form.errors %}
@@ -54,14 +56,47 @@
                         required placeholder="Repetir contraseña">
                 </div>
             </div>
-            <button class="btn btn-primary btn-user btn-block" type="submit">
+            <button class="btn btn-primary btn-user btn-block font-weight-bold" type="submit">
                 Registrar cuenta
             </button>
             <hr>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-                <a href="{% url 'home' %}" class="btn btn-primary btn-sm">Volver</a>
-                <input type="submit" class="btn btn-primary" value="Enviar">
-            </div>
+            <a href="{% url 'login' %}" class="btn btn-primary btn-user btn-block font-weight-bold">Volver al inicio de sesión</a>
         </form>
     </div>
+
+
+<style>
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .text-primary {
+        color: var(--primary) !important;
+    }
+
+    .btn-primary {
+        background-color: var(--primary);
+        color: white;
+        border-color: white;
+    }
+
+    .btn-primary:hover {
+        color: var(--primary);
+        background-color: white;
+        border-color: var(--primary);
+    }
+
+    .a {
+        color: var(--primary);
+    }
+
+    .a:hover {
+        color: var(--primary) !important;
+    }
+</style>
 {% endblock %}
