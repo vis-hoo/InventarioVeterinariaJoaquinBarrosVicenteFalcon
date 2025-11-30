@@ -25,13 +25,12 @@
                 <button type="submit" class="btn btn-primary btn-user btn-block font-weight-bold">
                     Iniciar sesión
                 </button>
+                <a href="{% url 'home' %}" class="btn btn-secondary btn-user btn-block font-weight-bold">
+                    Volver a la página de inicio</a>
             </form>
             <hr>
             <div class="text-center">
-                <a href="{% url 'home' %}" class="btn btn-primary btn-medium btn-pill font-weight-bold">Volver al inicio</a>
-            <hr>
                 <a class="small" href="{% url 'signup' %}">¿No tienes una cuenta? Regístrate</a><br>
-                <a class="small" href="#">¿Has olvidado tu contraseña?</a>
             </div>
         </div>
     </div>
@@ -48,6 +47,12 @@
         color: var(--primary);
         background-color: white;
         border-color: var(--primary);
+    }
+
+    .btn-primary:active:focus {
+        background-color: var(--primary) !important;
+        color: white !important;
+        border-color: white !important;
     }
 
     a {

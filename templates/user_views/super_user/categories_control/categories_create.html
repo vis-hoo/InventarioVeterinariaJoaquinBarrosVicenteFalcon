@@ -5,52 +5,53 @@
 {% block sidebar %} {% include 'user_views/super_user/sidebar.html' %} {% endblock %}
 {% block topbar %} {% include 'menu/topbar_user_name.html' %} {% endblock %}
 {% block content %}
-    <!-- Form para registrar categoría-->
-    <div class="container">
-        <div class="alert alert-info display-3 text-center my-5"
-            style="background-color: var(--primary) !important; color: white; border: none;">
-            Registrar categoría
+<!-- Form para registrar categoría-->
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="text-primary font-weight-bold">
+                    Registrar categoría
+                </h1>
+            </div>
         </div>
     </div>
+</div>
 
-    {% if form.errors %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <ul>
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <ul>
         {% for field in form %}
-            {% for error in field.errors %}
-            <li><strong>{{field.label}}: </strong> {{error}} </li>
-            {% endfor %}
+        {% for error in field.errors %}
+        <li><strong>{{field.label}}: </strong> {{error}} </li>
+        {% endfor %}
         {% endfor %}
         {% for error in form.non_field_errors %}
-            <li> {{error}} </li>
+        <li> {{error}} </li>
         {% endfor %}
-        </ul>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
-            <span aria-hidden="true">&times;</span>
+    </ul>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
+<div class="row justify-content-center my-5">
+    <form method="post" class="user col-lg-8 card p-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" name="name" id="id_name" autofocus required
+                placeholder="Nombre">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control form-control-user" name="description" id="id_description" autofocus required
+                placeholder="Descripción"></textarea>
+        </div>
+        <button class="btn btn-primary btn-user btn-block font-weight-bold" type="submit">
+            Registrar categoría
         </button>
-    </div>
-    {% endif %}
-    
-    <div class="row justify-content-center my-5">
-        <form method="post" class="user col-6 card p-4">
-            {% csrf_token %}
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" name="name" id="id_name" autofocus
-                        required placeholder="Nombre">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <textarea class="form-control form-control-user" name="description" id="id_description" autofocus
-                        required placeholder="Descripción"></textarea>
-                </div>
-            </div>
-            <button class="btn btn-primary btn-user btn-block font-weight-bold" type="submit">
-                Registrar categoría
-            </button>
-        </form>
-    </div>
+    </form>
+</div>
 
 
 <style>
@@ -64,6 +65,12 @@
         color: var(--primary);
         background-color: white;
         border-color: var(--primary);
+    }
+
+    .btn-primary:active:focus {
+        background-color: var(--primary) !important;
+        color: white !important;
+        border-color: white !important;
     }
 
     .a {

@@ -57,7 +57,7 @@ def categories_edit(request, id):
             messages.success(request, "Categoría editada exitosamente")
             return HttpResponseRedirect(reverse('categories_list'))
 
-    data = {'form': form}
+    data = {'form': form, 'cat': categoria}
     return render(request, 'user_views/super_user/categories_control/categories_edit.html', data)
 
 @login_required
@@ -119,7 +119,7 @@ def products_edit(request, id):
             messages.success(request, "Producto editado exitosamente")
             return HttpResponseRedirect(reverse('products_list'))
 
-    data = {'form': form}
+    data = {'form': form, 'prod': producto}
     return render(request, 'user_views/products_control/products_edit.html', data)
 
 @login_required

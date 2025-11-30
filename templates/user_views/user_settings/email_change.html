@@ -5,67 +5,103 @@
 {% block sidebar %}
 
 {% if user.is_superuser %}
-    {% include 'user_views/super_user/sidebar.html' %} 
+{% include 'user_views/super_user/sidebar.html' %}
 {% else %}
-    {% include 'user_views/regular_user/sidebar.html' %} 
+{% include 'user_views/regular_user/sidebar.html' %}
 {% endif %}
 
 {% endblock %}
 {% block topbar %} {% include 'menu/topbar_user_name.html' %} {% endblock %}
 {% block content %}
-    <!-- Form para añadir usuario-->
-    <div class="alert alert-info display-3 text-center my-5"
-        style="background-color: var(--primary) !important; color: white; border: none;">
-        Cambiar correo electrónico
+<!-- Form para añadir usuario-->
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="text-primary font-weight-bold">
+                    Cambiar correo electrónico
+                </h1>
+                <h3 class="text-center">Correo electrónico actual: {{ user.email }}</h3>
+            </div>
+        </div>
     </div>
-    <h2 class="text-center my-5">Correo electrónico actual: {{ user.email }}</h2>
+</div>
 
-    {% if form.errors %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <ul>
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <ul>
         {% for field in form %}
-            {% for error in field.errors %}
-            <li><strong>{{field.label}}: </strong> {{error}} </li>
-            {% endfor %}
+        {% for error in field.errors %}
+        <li><strong>{{field.label}}: </strong> {{error}} </li>
+        {% endfor %}
         {% endfor %}
         {% for error in form.non_field_errors %}
-            <li> {{error}} </li>
+        <li> {{error}} </li>
         {% endfor %}
-        </ul>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
-            <span aria-hidden="true">&times;</span>
+    </ul>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
+<div class="row justify-content-center">
+    <form method="post" class="user col-lg-8 card p-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" name="email" id="id_email" autofocus required
+                placeholder="Correo electrónico nuevo">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-user" name="password" id="id_password" autofocus
+                required placeholder="Contraseña">
+        </div>
+        <button type="submit" class="btn btn-primary btn-user btn-block font-weight-bold">
+            Cambiar correo electrónico
         </button>
-    </div>
-    {% endif %}
-    
-    <div class="row justify-content-center">
-        <form method="post" class="user col-6 card p-4">
-            {% csrf_token %}
-            <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="email" id="id_email" autofocus
-                    required placeholder="Correo electrónico nuevo">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control form-control-user" name="password" id="id_password" autofocus
-                    required placeholder="Contraseña">
-            </div>
-            <button type="submit" class="btn btn-primary btn-user btn-block font-weight-bold">
-                Cambiar correo electrónico
-            </button>
-        </form>
-    </div>
+    </form>
+</div>
+
+
+<style>
+    .btn-primary {
+        background-color: var(--primary);
+        color: white;
+        border-color: white;
+    }
+
+    .btn-primary:hover {
+        color: var(--primary);
+        background-color: white;
+        border-color: var(--primary);
+    }
+
+    .btn-primary:active:focus {
+        background-color: var(--primary) !important;
+        color: white !important;
+        border-color: white !important;
+    }
+
+    .a {
+        color: var(--primary);
+    }
+
+    .a:hover {
+        color: var(--primary) !important;
+    }
+</style>
 {% endblock %}
 {% block messages %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        {% endfor %}
-    {% endif %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
 {% endblock %}
 {% block footer %} {% include 'menu/footer.html' %} {% endblock %}
 {% block extras %} {% include 'menu/logout_dialog.html' %} {% endblock %}
